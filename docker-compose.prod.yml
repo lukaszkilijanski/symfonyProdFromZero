@@ -1,17 +1,17 @@
 services:
   nginx:
     image: nginx:alpine
-    container_name: symfony_nginx
+    container_name: doctor_symfony_nginx
     volumes:
       - /var/www/html:/var/www/html
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/prod/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "80:80"
     depends_on:
       - php-fpm
   php-fpm:
-    build: ./php-fpm
-    container_name: symfony_php
+    build: docker/prod/php-fpm
+    container_name: doctor_symfony_php
     working_dir: /var/www/html
     volumes:
       - /var/www/html:/var/www/html
@@ -21,7 +21,7 @@ services:
       - db
   db:
     image: mariadb:11.5
-    container_name: symfony_db
+    container_name: doctor_symfony_db
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
