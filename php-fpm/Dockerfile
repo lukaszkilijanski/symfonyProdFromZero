@@ -6,8 +6,11 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libicu-dev \
     libzip-dev \
+    libonig-dev \
+    libpng-dev \
     zip \
-    && docker-php-ext-install pdo pdo_mysql zip
+    mariadb-client \
+    && docker-php-ext-install pdo pdo_mysql zip intl
 
 # Install Symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash \
