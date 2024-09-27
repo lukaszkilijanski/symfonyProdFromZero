@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     libzip-dev \
     zip \
+    php-mysql \
     && docker-php-ext-install pdo pdo_mysql zip
 
 # Install Symfony CLI
