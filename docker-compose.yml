@@ -19,15 +19,15 @@ services:
       SYMFONY_ENV: prod
     depends_on:
       - db
-
   db:
-    image: mysql:8.0
+    image: mariadb:11.5
     container_name: symfony_db
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+      DB_ROOT_PASSWORD:  ${DB_ROOT_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
       
