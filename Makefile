@@ -28,6 +28,8 @@ up:
 		elif [ "$$APP_ENV" = "prod" ]; then \
 			echo "Using production environment"; \
 			$(DOCKER_COMPOSE) -f docker-compose.prod.yml up -d; \
+			docker exec doctor_symfony_php mkdir -p src/Entity; \
+            docker exec doctor_symfony_php composer install; \
 		else \
 			echo "Error: APP_ENV $$APP_ENV is not a valid environment. Valid options are local, testing, staging, or production."; \
 			exit 1; \
