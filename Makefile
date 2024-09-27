@@ -18,7 +18,7 @@ up:
 		elif [ "$$APP_ENV" = "dev" ]; then \
 			echo "Using local environment"; \
 			sleep 3; \
-			$(DOCKER_COMPOSE) up -d --build; \
+			$(DOCKER_COMPOSE) -f docker-compose.dev.yml up -d --build; \
 			docker exec doctor_symfony_php mkdir -p src/Entity; \
 			docker exec doctor_symfony_php composer install; \
 		elif [ "$$APP_ENV" = "testing" ]; then \
@@ -27,7 +27,8 @@ up:
 			echo "Using staging environment"; \
 		elif [ "$$APP_ENV" = "prod" ]; then \
 			echo "Using production environment"; \
-			$(DOCKER_COMPOSE) -f docker-compose.prod.yml up -d; \
+			sleep 3; \
+			$(DOCKER_COMPOSE) -f docker-compose.prod.yml up -d --build; \
 			docker exec doctor_symfony_php mkdir -p src/Entity; \
             docker exec doctor_symfony_php composer install; \
 		else \
