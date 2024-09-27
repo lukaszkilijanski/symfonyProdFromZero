@@ -14,7 +14,7 @@ services:
     container_name: symfony_php
     working_dir: /var/www/html
     volumes:
-      - /var/www/html/symfony:/var/www/html
+      - /var/www/html:/var/www/html
     environment:
       SYMFONY_ENV: prod
     depends_on:
